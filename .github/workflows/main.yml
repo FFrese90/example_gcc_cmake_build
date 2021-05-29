@@ -26,8 +26,8 @@ jobs:
         config:
           - { name: "Windows MSVC", os: windows-2019,  cc: "cl",    cxx: "cl",      gen: "Visual Studio 16 2019"  }
           - { name: "Windows gcc",  os: windows-2019,  cc: "gcc",   cxx: "g++",     gen: "Ninja"  }
-          #- { name: "Ubuntu gcc",   os: ubuntu-20.04,  cc: "gcc",   cxx: "g++",     gen: "Ninja"  }
-          #- { name: "Ubuntu clang", os: ubuntu-20.04,  cc: "clang", cxx: "clang++", gen: "Ninja"  }
+          - { name: "Ubuntu gcc",   os: ubuntu-20.04,  cc: "gcc",   cxx: "g++",     gen: "Ninja"  }
+          - { name: "Ubuntu clang", os: ubuntu-20.04,  cc: "clang", cxx: "clang++", gen: "Ninja"  }
           - { name: "MacOS clang",  os: macos-latest,  cc: "clang", cxx: "clang++", gen: "Ninja"  }
 
     steps:
@@ -43,11 +43,11 @@ jobs:
       # Cmake
       - name: Configure CMake
         env:
-          CC: ${{ matrix.cc }}
-          CXX: ${{ matrix.cxx }}
+          CC: ${{ matrix.config.cc }}
+          CXX: ${{ matrix.config.cxx }}
         run: |
           mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "${{ matrix.gen }}"
+          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "${{ matrix.config.gen }}"
       
       # Build
       - name: Build
