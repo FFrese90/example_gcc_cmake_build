@@ -64,7 +64,7 @@ jobs:
     
     strategy:
       matrix:
-        generator: ["Ninja", "Visual Studio 16 2019"]
+        generator: [Ninja, Visual Studio 16 2019]
 
     env:
       CMAKE_C_COMPILER: gcc
@@ -97,7 +97,7 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
           mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G ${{ matrix.generator }}
+          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "${{ matrix.generator }}"
       
       # Build
       - name: Build
