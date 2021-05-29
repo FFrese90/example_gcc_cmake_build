@@ -26,7 +26,6 @@ jobs:
     strategy:
       matrix:
         compiler: [gcc, clang]
-        toolset: [14.0, 14.XX]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -53,6 +52,7 @@ jobs:
     strategy:
       matrix:
         compiler: [gcc, clang]
+        toolset: [14.0, 14.XX]
         
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
