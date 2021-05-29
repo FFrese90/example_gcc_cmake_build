@@ -30,7 +30,7 @@ jobs:
     env:
       CC: ${{ matrix.compiler }}
       CXX: ${{ matrix.compiler }}
-      
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -59,8 +59,8 @@ jobs:
     #    toolset: [14.0, 14.XX]
     
     env:
-      CC: gcc-8
-      CXX: g++-8
+      CC: gcc
+      CXX: g++
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
