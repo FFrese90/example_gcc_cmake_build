@@ -49,11 +49,11 @@ jobs:
         run: |
           mkdir build 
           cmake -B ${{github.workspace}}/build \ 
-                -S ${{github.workspace}}/source \
-                -G "${{ matrix.config.gen }}" \
-                -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+            -S ${{github.workspace}}/source \
+            -G "${{ matrix.config.gen }}" \
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
           ...
-          
+
       # Build
       - name: Build
         # Build your program with the given configuration
