@@ -82,7 +82,6 @@ jobs:
           cmake --version
           c:/msys64/mingw32/bin/gcc --version
           gcc --version
-          clang --version
 
       # Cmake
       - name: Configure CMake
