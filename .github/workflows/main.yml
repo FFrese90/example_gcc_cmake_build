@@ -41,7 +41,6 @@ jobs:
         # Build your program with the given configuration
         run: |
           cmake --version
-          ninja --version
           gcc --version
 
       # Cmake
@@ -80,7 +79,6 @@ jobs:
         # Build your program with the given configuration
         run: |
           cmake --version
-          ninja --version
           c:/msys64/mingw32/bin/gcc --version
           gcc --version
 
