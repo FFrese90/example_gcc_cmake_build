@@ -25,8 +25,7 @@ jobs:
 
     strategy:
       matrix:
-        compiler: [gcc, clang]
-        gcc: [8,9]
+        compiler: [gcc-8, gcc, clang, clang-10]
 
     env:
       CC: ${{ matrix.compiler }}
