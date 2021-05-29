@@ -1,7 +1,7 @@
 
 #include "Modul2_MapOUT.h"
 
-uint16_t * pu16Value0;
+static uint16_t * pu16Value0;
 
 uint16_t Modul2_MapOUT_Init( uint16_t * _pu16Value0)
 {
