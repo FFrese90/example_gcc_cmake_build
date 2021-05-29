@@ -87,4 +87,5 @@ int Modul_work_100ms(void)
       break;
   }
 
+  return 0x00;
 }
