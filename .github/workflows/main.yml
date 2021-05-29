@@ -64,7 +64,7 @@ jobs:
     
     strategy:
       matrix:
-        generator: [Ninja, Visual Studio 16 2019]
+        generator: [Ninja, Visual Studio 16 2019, Visual Studio 11 2012]
 
     env:
       CMAKE_C_COMPILER: gcc
