@@ -48,8 +48,8 @@ jobs:
           CXX: ${{ matrix.config.cxx }}
         run: |
           mkdir build 
-          cmake -B ${{github.workspace}}/build \ 
-            -S ${{github.workspace}}/source \
+          cmake -B "${{github.workspace}}/build" \ 
+            -S "${{github.workspace}}/source" \
             -G "${{ matrix.config.gen }}" \
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
           ...
