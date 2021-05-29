@@ -19,6 +19,42 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  build:
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+          - { name: "Windows MSVC", os: windows-2019,  cc: "cl",    cxx: "cl",      gen: "Visual Studio 16 2019"  }
+          - { name: "Windows gcc",  os: windows-2019,  cc: "gcc",   cxx: "g++",     gen: "Ninja"  }
+          - { name: "Ubuntu gcc",   os: ubuntu-20.04,  cc: "gcc",   cxx: "g++",     gen: "Ninja"  }
+          - { name: "Ubuntu clang", os: ubuntu-20.04,  cc: "clang", cxx: "clang++", gen: "Ninja"  }
+          - { name: "MacOS clang",  os: macos-latest,  cc: "clang", cxx: "clang++", gen: "Ninja"  }
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Setup Ninja
+        uses: ashutoshvarma/setup-ninja@master
+        with:
+          # ninja version to download. Default: 1.10.0
+          version: 1.10.0
+
+      # Cmake
+      - name: Configure CMake
+        env:
+          CC: ${{ matrix.cc }}
+          CXX: ${{ matrix.cxx }}
+        run: |
+          mkdir build 
+          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "${{ matrix.gen }}"
+      
+      # Build
+      - name: Build
+        # Build your program with the given configuration
+        run: cmake --build ${{github.workspace}}/build
+
+################################################################################################
   build-linux:
     # The type of runner that the job will run on
     runs-on: [ubuntu-20.04]
