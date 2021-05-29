@@ -23,13 +23,12 @@ jobs:
     # The type of runner that the job will run on
     runs-on: [ubuntu-20.04]
 
-    #strategy:
-    #  matrix:
-    #    compiler: [gcc, clang]
-    
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+
     env:
-      CC: gcc-8
-      CXX: g++-8
+      CC: ${{ matrix.compiler }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
