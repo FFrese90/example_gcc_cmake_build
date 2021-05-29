@@ -46,13 +46,12 @@ jobs:
         env:
           CC: ${{ matrix.config.cc }}
           CXX: ${{ matrix.config.cxx }}
-        run: |
-          mkdir build 
-          cmake -B "${{github.workspace}}/build" \ 
-            -S "${{github.workspace}}/source/." \
-            -G "${{ matrix.config.gen }}" \
-            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
-          ...
+        run: >-
+          mkdir build &
+          cmake -B "${{github.workspace}}/build" 
+          -S "${{github.workspace}}/source"
+          -G "${{ matrix.config.gen }}"
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
 
       # Build
       - name: Build
