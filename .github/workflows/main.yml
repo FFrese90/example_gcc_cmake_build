@@ -52,7 +52,8 @@ jobs:
                 -S ${{github.workspace}}/source \
                 -G "${{ matrix.config.gen }}" \
                 -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
-      
+          ...
+          
       # Build
       - name: Build
         # Build your program with the given configuration
