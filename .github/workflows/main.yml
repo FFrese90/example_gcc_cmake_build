@@ -16,16 +16,16 @@ on:
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build-linux:
     # The type of runner that the job will run on
     runs-on: [ubuntu-20.04]
 
-    strategy:
-      matrix:
-        compiler: [gcc, clang]
+    #strategy:
+    #  matrix:
+    #    compiler: [gcc, clang]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -49,11 +49,15 @@ jobs:
     # The type of runner that the job will run on
     runs-on: [windows-2019]
     
-    strategy:
-      matrix:
-        compiler: [gcc, clang]
-        toolset: [14.0, 14.XX]
-        
+    #strategy:
+    #  matrix:
+    #    compiler: [gcc, clang]
+    #    toolset: [14.0, 14.XX]
+    
+    env:
+      CC: gcc-8
+      CXX: g++-8
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
