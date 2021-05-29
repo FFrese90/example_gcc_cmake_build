@@ -63,12 +63,7 @@ jobs:
     
     strategy:
       matrix:
-        compiler: [gcc, clang]
-
-    env:
-      #Path: "C:/msys64/mingw64/bin;C:/msys64/usr/bin;$env:Path"
-      CC: ${{ matrix.compiler }}
-      CXX: ${{ matrix.compiler }}
+        compiler: [gcc, mscv]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -89,7 +84,7 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
           mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source
+          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -DCMAKE_C_COMPILER=gcc
       
       # Build
       - name: Build
