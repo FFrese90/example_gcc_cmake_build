@@ -67,8 +67,6 @@ jobs:
         compiler: [gcc, mscv]
 
     env:
-      CMAKE_CXX_COMPILER_ID: "GNU"
-      CMAKE_CXX_COMPILER_VERSION: "10.3.0"
       CMAKE_C_COMPILER: gcc
       CMAKE_CXX_COMPILER: g++
 
@@ -99,7 +97,7 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
           mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "Ninja" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "Ninja"
       
       # Build
       - name: Build
