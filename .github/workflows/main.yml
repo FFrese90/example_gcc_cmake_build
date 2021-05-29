@@ -26,6 +26,10 @@ jobs:
     #strategy:
     #  matrix:
     #    compiler: [gcc, clang]
+    
+    env:
+      CC: gcc-8
+      CXX: g++-8
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
