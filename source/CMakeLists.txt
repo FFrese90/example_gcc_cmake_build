@@ -16,7 +16,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_VERBOSE_MAKEFILE ON) # debug output from makefiles
 
 # Setup Debug Symbols
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Debug)
 
 # Add Defines
 add_definitions(-DCMAKE_TEST_DEFINE)

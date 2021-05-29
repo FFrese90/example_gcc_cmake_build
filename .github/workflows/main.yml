@@ -29,6 +29,7 @@ jobs:
           - { name: "Ubuntu gcc",   os: ubuntu-20.04,  cc: "gcc",   cxx: "g++",     gen: "Ninja"  }
           - { name: "Ubuntu clang", os: ubuntu-20.04,  cc: "clang", cxx: "clang++", gen: "Ninja"  }
           - { name: "MacOS clang",  os: macos-latest,  cc: "clang", cxx: "clang++", gen: "Ninja"  }
+        build_type: [Release, Debug]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -47,93 +48,7 @@ jobs:
           CXX: ${{ matrix.config.cxx }}
         run: |
           mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "${{ matrix.config.gen }}"
-      
-      # Build
-      - name: Build
-        # Build your program with the given configuration
-        run: cmake --build ${{github.workspace}}/build
-
-################################################################################################
-  build-linux:
-    # The type of runner that the job will run on
-    runs-on: [ubuntu-20.04]
-
-    strategy:
-      matrix:
-        compiler: [gcc, clang]
-
-    env:
-      CC: ${{ matrix.compiler }}
-      CXX: ${{ matrix.compiler }}
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Check Versions
-      - name: Check Versions
-        # Build your program with the given configuration
-        run: |
-          cmake --version
-          gcc --version
-          clang --version
-          cmake -help
-
-      # Cmake
-      - name: Configure CMake
-        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-        run: |
-          mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source
-      
-      # Build
-      - name: Build
-        # Build your program with the given configuration
-        run: cmake --build ${{github.workspace}}/build
-  
-  build-win:
-    # The type of runner that the job will run on
-    runs-on: [windows-2019]
-    
-    strategy:
-      matrix:
-        generator: [Ninja, Visual Studio 16 2019]
-
-    env:
-      CMAKE_C_COMPILER: gcc
-      CMAKE_CXX_COMPILER: g++
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: Setup Ninja
-        uses: ashutoshvarma/setup-ninja@master
-        with:
-          # ninja version to download. Default: 1.10.0
-          version: 1.10.0
-
-      # Check Versions
-      - name: Check Versions
-        # Build your program with the given configuration
-        run: |
-          cmake --version
-          c:/msys64/mingw32/bin/gcc --version
-          gcc --version
-          ninja --version
-          cmake -help
-
-      # Cmake
-      - name: Configure CMake
-        # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-        # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-        run: |
-          mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "${{ matrix.generator }}"
+          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -G "${{ matrix.config.gen }}" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
       
       # Build
       - name: Build
