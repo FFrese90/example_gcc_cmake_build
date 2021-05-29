@@ -67,6 +67,8 @@ jobs:
         compiler: [gcc, mscv]
 
     env:
+      CMAKE_CXX_COMPILER_ID: "GNU"
+      CMAKE_CXX_COMPILER_VERSION: "10.3.0"
       CMAKE_C_COMPILER: gcc
       CMAKE_CXX_COMPILER: g++
 
