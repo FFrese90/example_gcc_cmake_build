@@ -25,7 +25,7 @@ jobs:
 
     strategy:
       matrix:
-        compiler: [gcc-8, gcc, clang, clang-10]
+        compiler: [gcc, clang]
 
     env:
       CC: ${{ matrix.compiler }}
@@ -35,7 +35,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
+      # Check Versions
+      - name: Check Versions
+        # Build your program with the given configuration
+        run: |
+          cmake --version
+          ninja --version
+          gcc --version
+
       # Cmake
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -53,20 +61,29 @@ jobs:
     # The type of runner that the job will run on
     runs-on: [windows-2019]
     
-    #strategy:
-    #  matrix:
-    #    compiler: [gcc, clang]
-    #    toolset: [14.0, 14.XX]
-    
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+
     env:
-      CC: gcc
-      CXX: g++
+      #Path: "C:/msys64/mingw64/bin;C:/msys64/usr/bin;$env:Path"
+      CC: ${{ matrix.compiler }}
+      CXX: ${{ matrix.compiler }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
+      # Check Versions
+      - name: Check Versions
+        # Build your program with the given configuration
+        run: |
+          cmake --version
+          ninja --version
+          c:/msys64/mingw32/bin/gcc --version
+          gcc --version
+
       # Cmake
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
