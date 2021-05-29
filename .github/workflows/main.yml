@@ -76,7 +76,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
+      - name: Setup Ninja
+        uses: ashutoshvarma/setup-ninja@master
+        with:
+          # ninja version to download. Default: 1.10.0
+          version: 1.10.0
+
       # Check Versions
       - name: Check Versions
         # Build your program with the given configuration
@@ -84,6 +90,7 @@ jobs:
           cmake --version
           c:/msys64/mingw32/bin/gcc --version
           gcc --version
+          ninja --version
           cmake -help
 
       # Cmake
