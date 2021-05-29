@@ -56,7 +56,7 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: |
           mkdir build 
-          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source
+          cmake -B ${{github.workspace}}/build -S ${{github.workspace}}/source -DCMAKE_C_COMPILER=C:/msys32/mingw32/bin/gcc.exe
       
       # Build
       - name: Build
